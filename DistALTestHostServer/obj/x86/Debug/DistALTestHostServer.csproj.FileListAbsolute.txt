@@ -1,0 +1,16 @@
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\libzmq.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\DistALTestHostServer.exe
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\DistALTestHostServer.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\DistALServer.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\clrzmq.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\DistALServer.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\clrzmq.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\obj\x86\Debug\DistALTestHostServer.exe
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\obj\x86\Debug\DistALTestHostServer.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\System.Reactive.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\System.Reactive.xml
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\DistALTestHostServer.exe.config
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\LogDb.db3
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\MessagesInterfaces.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\MessagesInterfaces.pdb

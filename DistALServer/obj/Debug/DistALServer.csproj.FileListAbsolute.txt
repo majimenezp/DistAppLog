@@ -1,0 +1,12 @@
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\libzmq.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\DistALServer.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\DistALServer.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\clrzmq.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\clrzmq.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\obj\Debug\ResolveAssemblyReference.cache
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\obj\Debug\DistALServer.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\obj\Debug\DistALServer.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\System.Reactive.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\System.Reactive.xml
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\MessagesInterfaces.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALServer\bin\Debug\MessagesInterfaces.pdb

@@ -1,0 +1,12 @@
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\DistALTestHostClient.exe
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\DistALTestHostClient.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\obj\x86\Debug\DistALTestHostClient.exe
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\obj\x86\Debug\DistALTestHostClient.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\libzmq.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\DistALClient.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\clrzmq.dll
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\DistALClient.pdb
+c:\users\majimenezp\documents\visual studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\clrzmq.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\MessagesInterfaces.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\MessagesInterfaces.pdb
