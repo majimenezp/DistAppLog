@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DistALClient;
+using System.Threading;
 
 namespace DistALTestHostClient
 {
@@ -10,9 +11,10 @@ namespace DistALTestHostClient
     {
         static void Main(string[] args)
         {
+            int i ;
             Configuration config = new Configuration();
             config.Port = 5560;
-            config.ServerIP = config.StringToIP("192.168.1.72");
+            config.ServerIP = config.StringToIP("192.168.1.71");
             if (args.Length > 0)
             {
                 config.Identity = args[0];
@@ -21,12 +23,39 @@ namespace DistALTestHostClient
             {
                 config.Identity = "Client1";
             }
+            Random rand = new Random(544242424);
+           
             
             AppLogClient.Instance.Init(config);
-            for (int i = 0; i < 100; i++)
+            for (i= 0; i < 10; i++)
             {
                 AppLogClient.Instance.SendInfoMessage("TestClient", "Test " + i.ToString());
-                System.Threading.Thread.Sleep(1000);
+                Thread.Sleep( rand.Next(1, 500));
+            }
+            for (i = 0; i < 10; i++)
+            {
+                AppLogClient.Instance.SendHitMessage(DateTime.Now, "TestHit", "Me", "Test " + i.ToString());
+                Thread.Sleep(rand.Next(1, 500));
+            }
+            for (i = 0; i < 10; i++)
+            {
+                AppLogClient.Instance.SendErrorMessage("TestError", "Error test" + i.ToString(), new Exception() { Source = "Test sender" });
+                Thread.Sleep(rand.Next(1, 500));
+            }
+            for (i = 0; i < 10; i++)
+            {
+                AppLogClient.Instance.SendDebugMessage("TestDebug", "Test debug" + i.ToString());
+                Thread.Sleep(rand.Next(1, 500));
+            }
+            for (i = 0; i < 10; i++)
+            {
+                AppLogClient.Instance.SendWarningMessage("TestWarning","Test warn" + i.ToString(),new Exception() { Source = "Test sender" });
+                Thread.Sleep(rand.Next(1, 500));
+            }
+            for (i = 0; i < 10; i++)
+            {
+                AppLogClient.Instance.SendFatalMessage("TestFatal", "Test fatal" + i.ToString(), new Exception() { Source = "Test sender" });
+                Thread.Sleep(rand.Next(1, 500));
             }
             Console.WriteLine("Press a key to stop...");
             Console.ReadKey();

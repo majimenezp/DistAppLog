@@ -12,7 +12,7 @@ namespace DistALTestHostServer
         {
             Configuration config=new Configuration();
             config.Port=5560;
-            config.ServerIP=config.StringToIP("192.168.1.72");
+            config.ServerIP=config.StringToIP("192.168.1.71");
             AppLogServer srv = new AppLogServer(config);
             srv.Start();
             Console.WriteLine("Press a key to stop...");

@@ -65,6 +65,7 @@
     <Compile Include="DAL\Massive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartParameters.cs" />
+    <Compile Include="ZMQPollerParams.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libzmq.dll">

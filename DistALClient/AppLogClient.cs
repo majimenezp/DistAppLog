@@ -62,14 +62,78 @@ namespace DistALClient
             SendInfoMessage(message);
         }
 
-        private void SendInfoMessage(InfoMessage message)
+        public void SendInfoMessage(InfoMessage message)
         {
             message.OriginIdentity = conf.Identity;
             byte[] encMessage = Utils.Serializer(message);
             sender.Send(encMessage);
         }
 
+        public void SendErrorMessage(string ModuleName,string Message,System.Exception exception)
+        {
+            ErrorMessage message = new ErrorMessage();
+            message.Date = DateTime.Now;
+            message.Message = Message;
+            message.ModuleName = ModuleName;
+            message.Exception = exception;
+            SendErrorMessage(message);
+        }
+        public void SendErrorMessage(ErrorMessage message)
+        {
+            message.OriginIdentity = conf.Identity;
+            byte[] encMessage = Utils.Serializer(message);
+            sender.Send(encMessage);
+        }
 
+        public void SendWarningMessage(string ModuleName, string Message, System.Exception exception)
+        {
+            WarningMessage message = new WarningMessage();
+            message.Date = DateTime.Now;
+            message.Message = Message;
+            message.ModuleName = ModuleName;
+            message.Exception = exception;
+            SendWarningMessage(message);
+        }
+        public void SendWarningMessage(WarningMessage message)
+        {
+            message.OriginIdentity = conf.Identity;
+            byte[] encMessage = Utils.Serializer(message);
+            sender.Send(encMessage);
+        }
+
+        public void SendFatalMessage(string ModuleName, string Message, System.Exception exception)
+        {
+            FatalMessage message = new FatalMessage();
+            message.Date = DateTime.Now;
+            message.Message = Message;
+            message.ModuleName = ModuleName;
+            message.Exception = exception;
+            SendFatalMessage(message);
+        }
+        public void SendFatalMessage(FatalMessage message)
+        {
+            message.OriginIdentity = conf.Identity;
+            byte[] encMessage = Utils.Serializer(message);
+            sender.Send(encMessage);
+        }
+
+        public void SendDebugMessage(string ModuleName, string Message)
+        {
+            DebugMessage message = new DebugMessage();
+            message.Message = Message;
+            message.ModuleName = ModuleName;
+            message.Date = DateTime.Now;
+            System.Diagnostics.StackTrace st=new System.Diagnostics.StackTrace();
+            System.Diagnostics.StackFrame[] frames=st.GetFrames();
+            message.Stacktrace = string.Join("->",(from fr in frames select fr.GetMethod().Name).ToArray());
+            SendDebugMessage(message);
+        }
+        public void SendDebugMessage(DebugMessage message)
+        {
+            message.OriginIdentity = conf.Identity;
+            byte[] encMessage = Utils.Serializer(message);
+            sender.Send(encMessage);
+        }
         public void Dispose()
         {
             

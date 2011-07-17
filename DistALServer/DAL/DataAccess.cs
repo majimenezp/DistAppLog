@@ -22,7 +22,7 @@ namespace DistALServer.DAL
                 Date=DateTime.Now,
                 AppIdentity=appid,
                 Module=message.ModuleName,
-                Level="Info",
+                Level="INFO",
                 Message=message.Message,
                 Exception=string.Empty
             });
@@ -37,7 +37,7 @@ namespace DistALServer.DAL
                 Date = message.DateofHit,
                 AppIdentity = appid,
                 Module = message.ModuleName,
-                Level = "Hit",
+                Level = "HIT",
                 Message = "Hit by user:" +message.User+"|Message:"+message.Message,
                 Exception = string.Empty
             });
@@ -58,6 +58,66 @@ namespace DistALServer.DAL
                 ApplicationsIds.Add(new { Id = newId, AppName = appname });
                 return newId;
             }
+        }
+
+        public void InsertDebugMessage(DebugMessage message)
+        {
+            long appid = CheckAppId(message.OriginIdentity.ToLower());
+            var tb = new Log();
+            var newId = tb.Insert(new
+            {
+                Date = message.Date,
+                AppIdentity = appid,
+                Module = message.ModuleName,
+                Level = "DEBUG",
+                Message = message.Message,
+                Exception = message.Stacktrace
+            });
+        }
+
+        public void InsertErrorMessage(ErrorMessage message)
+        {
+            long appid = CheckAppId(message.OriginIdentity.ToLower());
+            var tb = new Log();
+            var newId = tb.Insert(new
+            {
+                Date = message.Date,
+                AppIdentity = appid,
+                Module = message.ModuleName,
+                Level = "ERROR",
+                Message = message.Message,
+                Exception = message.Exception.ToString()
+            });
+        }
+
+        public void InsertWarningMessage(WarningMessage message)
+        {
+            long appid = CheckAppId(message.OriginIdentity.ToLower());
+            var tb = new Log();
+            var newId = tb.Insert(new
+            {
+                Date = message.Date,
+                AppIdentity = appid,
+                Module = message.ModuleName,
+                Level = "WARNING",
+                Message = message.Message,
+                Exception = message.Exception.ToString()
+            });
+        }
+
+        public void InsertFatalMessage(FatalMessage message)
+        {
+            long appid = CheckAppId(message.OriginIdentity.ToLower());
+            var tb = new Log();
+            var newId = tb.Insert(new
+            {
+                Date = message.Date,
+                AppIdentity = appid,
+                Module = message.ModuleName,
+                Level = "FATAL",
+                Message = message.Message,
+                Exception = message.Exception.ToString()
+            });
         }
     }
 }
