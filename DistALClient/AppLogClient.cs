@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using ZMQ;
 using DistALMessages;
+using System.Threading;
 
 namespace DistALClient
 {
     public class AppLogClient:IDisposable
     {
         private string ZmqUrl;
-        private Configuration conf;
+        private static Configuration conf;
         private static AppLogClient instance;
         private Context context;
-        private Socket sender;
+        private static Socket sender;
         private AppLogClient()
         {
         }
@@ -49,9 +49,7 @@ namespace DistALClient
         }
         public void SendHitMessage(HitMessage message)
         {
-            message.OriginIdentity = conf.Identity;
-            byte[] encMessage=Utils.Serializer(message);
-            sender.Send(encMessage);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadSend<HitMessage>), message);
         }
 
         public void SendInfoMessage(string ModuleName,string Message)
@@ -64,9 +62,7 @@ namespace DistALClient
 
         public void SendInfoMessage(InfoMessage message)
         {
-            message.OriginIdentity = conf.Identity;
-            byte[] encMessage = Utils.Serializer(message);
-            sender.Send(encMessage);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadSend<InfoMessage>), message);
         }
 
         public void SendErrorMessage(string ModuleName,string Message,System.Exception exception)
@@ -80,9 +76,7 @@ namespace DistALClient
         }
         public void SendErrorMessage(ErrorMessage message)
         {
-            message.OriginIdentity = conf.Identity;
-            byte[] encMessage = Utils.Serializer(message);
-            sender.Send(encMessage);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadSend<ErrorMessage>), message);          
         }
 
         public void SendWarningMessage(string ModuleName, string Message, System.Exception exception)
@@ -96,9 +90,7 @@ namespace DistALClient
         }
         public void SendWarningMessage(WarningMessage message)
         {
-            message.OriginIdentity = conf.Identity;
-            byte[] encMessage = Utils.Serializer(message);
-            sender.Send(encMessage);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadSend<WarningMessage>), message);
         }
 
         public void SendFatalMessage(string ModuleName, string Message, System.Exception exception)
@@ -112,28 +104,39 @@ namespace DistALClient
         }
         public void SendFatalMessage(FatalMessage message)
         {
-            message.OriginIdentity = conf.Identity;
-            byte[] encMessage = Utils.Serializer(message);
-            sender.Send(encMessage);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadSend<FatalMessage>), message);
         }
 
         public void SendDebugMessage(string ModuleName, string Message)
         {
+            List<string> frames1 = new List<string>();
             DebugMessage message = new DebugMessage();
             message.Message = Message;
             message.ModuleName = ModuleName;
             message.Date = DateTime.Now;
             System.Diagnostics.StackTrace st=new System.Diagnostics.StackTrace();
             System.Diagnostics.StackFrame[] frames=st.GetFrames();
-            message.Stacktrace = string.Join("->",(from fr in frames select fr.GetMethod().Name).ToArray());
+            foreach (System.Diagnostics.StackFrame frame in frames)
+            {
+                frames1.Add(frame.GetMethod().Name);
+            }
+            // used with 3.5 framework
+            //string.Join("->",(from fr in frames select fr.GetMethod().Name).ToArray());
+            message.Stacktrace = string.Join("->",frames1.ToArray());
             SendDebugMessage(message);
         }
         public void SendDebugMessage(DebugMessage message)
         {
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ThreadSend<DebugMessage>), message);
+        }
+
+        static void ThreadSend<T>(object sendinfo) where T :IMessage
+        {
+            T message = (T)sendinfo;
             message.OriginIdentity = conf.Identity;
             byte[] encMessage = Utils.Serializer(message);
             sender.Send(encMessage);
-        }
+        }        
         public void Dispose()
         {
             

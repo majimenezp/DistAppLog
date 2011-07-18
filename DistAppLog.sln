@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistALClient", "DistALClient\DistALClient.csproj", "{473E2C4A-7AC4-4009-8614-EBE97D45ED21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistALClient2.0", "DistALClient\DistALClient2.0.csproj", "{473E2C4A-7AC4-4009-8614-EBE97D45ED21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistALServer", "DistALServer\DistALServer.csproj", "{3087CDBB-93F1-4040-A336-EE8F4062FA14}"
 EndProject

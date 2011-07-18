@@ -1,0 +1,10 @@
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\libzmq.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\DistALClient.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\DistALClient.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\clrzmq.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\MessagesInterfaces.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\MessagesInterfaces.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\clrzmq.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\obj\Debug\DistALClient.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\obj\Debug\DistALClient.pdb

@@ -13,10 +13,10 @@ Massive - To save the data in a sqlite database, in this momment only sqlite dat
 
 
 TODO:
--Implement reactive extension in order to have a full asyncronous processing and support a lot of incomming messages.
--In this momment only are implemented the Info and hit message, i will add the error, debug and warning message in the next days.
--Asyncronous processing in the client side of the lib.
+-Implement reactive extension in order to have a full asyncronous processing and support a lot of incomming messages(implemented in some form,but no tested)
+-Asyncronous processing in the client side of the lib(currently uses threadpool for sending the messages)
 -Improve the support for other databases (sql server, mysql, etc).
+-Web frontend to administration,log view,search and a REST API for logging
 -Maybe create an provider for log4net.
 
 Contact:
