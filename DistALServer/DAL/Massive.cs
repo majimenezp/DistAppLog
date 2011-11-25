@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using DistALServer;
 
 namespace Massive {
     public static class ObjectExtensions {
@@ -100,8 +101,10 @@ namespace Massive {
             TableName = tableName == "" ? this.GetType().Name : tableName;
             PrimaryKeyField = string.IsNullOrEmpty(primaryKeyField) ? "ID" : primaryKeyField;
             var _providerName = "System.Data.SqlClient";
-            ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
-            _providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+            DistAppLogConfigurationSection config =
+           (DistAppLogConfigurationSection)System.Configuration.ConfigurationManager.GetSection("DistAppLogSection/Server");
+            ConnectionString = config.DataBase.SQLConnectionString;
+            _providerName = "System.Data.SQLite";
             _factory = DbProviderFactories.GetFactory(_providerName);
             
         }

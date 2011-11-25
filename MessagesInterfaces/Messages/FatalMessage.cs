@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
+using ProtoBuf;
 namespace DistALMessages
 {
     [Serializable]
-    public class FatalMessage : ErrorMessage
+    [ProtoContract]
+    public class FatalErrorMessage : ErrorMessage
     {
         public override MessageTypes MessageType
         {

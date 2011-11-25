@@ -13,7 +13,7 @@ namespace DistALTestHostClient
             int i ;
             Configuration config = new Configuration();
             config.Port = 5560;
-            config.ServerIP = config.StringToIP("172.21.138.75");
+            config.ServerIP = config.StringToIP("127.0.0.1");
             if (args.Length > 0)
             {
                 config.Identity = args[0];
@@ -22,14 +22,12 @@ namespace DistALTestHostClient
             {
                 config.Identity = "Client1";
             }
-            Random rand = new Random(544242424);
+            Random rand = new Random(544242424);          
            
-            
-            AppLogClient.Instance.Init(config);
-            for (i= 0; i < 10; i++)
+            for (i = 0; i < 10; i++)
             {
                 AppLogClient.Instance.SendInfoMessage("TestClient", "Test " + i.ToString());
-                Thread.Sleep( rand.Next(1, 500));
+                Thread.Sleep(rand.Next(1, 500));
             }
             for (i = 0; i < 10; i++)
             {
@@ -48,14 +46,18 @@ namespace DistALTestHostClient
             }
             for (i = 0; i < 10; i++)
             {
-                AppLogClient.Instance.SendWarningMessage("TestWarning","Test warn" + i.ToString(),new Exception() { Source = "Test sender" });
+                AppLogClient.Instance.SendWarningMessage("TestWarning", "Test warn" + i.ToString(), new Exception() { Source = "Test sender" });
                 Thread.Sleep(rand.Next(1, 500));
             }
+
+            
             for (i = 0; i < 10; i++)
             {
                 AppLogClient.Instance.SendFatalMessage("TestFatal", "Test fatal" + i.ToString(), new Exception() { Source = "Test sender" });
                 Thread.Sleep(rand.Next(1, 500));
             }
+
+
             Console.WriteLine("Press a key to stop...");
             Console.ReadKey();
         }

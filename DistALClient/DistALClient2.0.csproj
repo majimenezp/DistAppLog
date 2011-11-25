@@ -33,31 +33,39 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="clrzmq, Version=2.1.1.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\clrzmq2.2.1.0.2011100900\lib\clrzmq.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.470, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\clrzmq.dll</HintPath>
+      <HintPath>..\Lib\protobuf v2 r470\Net20\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppLogClient.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="DistAppLogConfigurationSection.cs" />
+    <Compile Include="ILog.cs" />
+    <Compile Include="LogManager.cs" />
+    <Compile Include="LogWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="libzmq.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MessagesInterfaces\DistALMessagesInterfaces.csproj">
       <Project>{FEA2E7FC-3D82-4FF4-8B10-8FB2FD7685BA}</Project>
       <Name>DistALMessagesInterfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libzmq.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

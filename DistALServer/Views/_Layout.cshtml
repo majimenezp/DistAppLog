@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>@Model.Title</title>
+    <style>
+        html{ background-color:#252525;}
+        #body{ background-color:#F8F8F8;margin: 40px 20px 40px 20px; padding:20px;border:2px solid #E0E0E0;}
+        #header{ background-color:#333;padding-left:50px; padding-right:50px;color:#F2F2F2;}
+        th{ background-color:#CCC;color:#222;padding: 2px 11px;text-align: left;border-right: 1px solid #F8F8F8;}
+        td{padding: 6px 11px;border-bottom: 1px solid #CCC;vertical-align: top;}
+    </style>
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div id="body">
+        <div id="header">
+            <h1>@Model.Title</h1>
+        </div>
+        @RenderBody()
+     </div>
+</body>
+</html>

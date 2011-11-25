@@ -8,6 +8,13 @@ using System.Reactive.Linq;
 using System.Threading;
 using DistALMessages;
 using System.Reactive.Subjects;
+using Ninject;
+using ProtoBuf.Meta;
+using Kayak;
+using Gate;
+using Gate.Kayak;
+using DistALServer.NancyKayak;
+using System.Net;
 
 namespace DistALServer
 {
@@ -17,13 +24,24 @@ namespace DistALServer
         private Context context;
         private Socket receiver;
         private string ZmqUrl;
+        private static DistALServer.DAL.IDataAccess dal;
         private PollItem[] items = new PollItem[1];
+        private int webport;
         //IObservable<IEventSource<ZMQ.PollHandler>> msgReceived;
         private readonly Subject<ZMQPollerParams> msgReceived = new Subject<ZMQPollerParams>();
-        public AppLogServer(Configuration config)
+        private static IScheduler scheduler;
+        private static Thread hiloServer;
+        public AppLogServer()
         {
-            this.conf = config;
-            ZmqUrl = string.Format("tcp://{0}:{1}",config.ServerIP.ToString(),config.Port.ToString());
+            DistAppLogConfigurationSection config =
+                       (DistAppLogConfigurationSection)System.Configuration.ConfigurationManager.GetSection("DistAppLogSection/Server");
+            ZmqUrl = string.Format("tcp://*:{0}", config.Communication.TcpPort.ToString());
+            IKernel kernel = NinjectFactory.GetNinjectKernel();
+            var tipo = Type.GetType(config.DataBase.DatabaseProvider);
+            dal = (DistALServer.DAL.IDataAccess)kernel.Get(tipo);
+            Utils.ConfigureDeserialization();
+            webport = config.Communication.WebServerPort;
+            //dal= 
         }
 
         public void Start()
@@ -37,42 +55,93 @@ namespace DistALServer
 
             StartSubscriber();
             Thread thr = new Thread(StartReceiver);
-            thr.Start(new StartParameters { context = this.context, pollitems = this.items }); 
+            hiloServer = new Thread(new ParameterizedThreadStart(InicioWebserver));
+            thr.Start(new StartParameters { context = this.context, pollitems = this.items });
+            hiloServer.Start(webport);
+        }
+
+        public static void InicioWebserver(object parametro)
+        {
+            int puerto = Convert.ToInt32(parametro);
+            var schedulerDelegate = new SchedulerDelegate();
+            scheduler = KayakScheduler.Factory.Create(schedulerDelegate);
+            var appDelegate = AppBuilder.BuildConfiguration(Startup.Configuration);
+            var endpoint = new IPEndPoint(IPAddress.Any, puerto);
+            using (KayakServer.Factory.CreateGate(appDelegate, scheduler, null).Listen(endpoint))
+            {
+                scheduler.Start();
+            }
+        }
+
+        public IObservable<ZMQPollerParams> OnSignalReceived
+        {
+            get { return msgReceived.AsObservable(); }
+        }
+
+        public void Stop()
+        {
+            items[0].PollInHandler -= new PollHandler(MessageReceiver_PollInHandler);
+            context.Dispose();
+            receiver.Dispose();
+            if (scheduler != null)
+            {
+                scheduler.Stop();
+            }
+            if (hiloServer != null)
+            {
+                hiloServer.Join();
+            }
+        }
+
+        public static DistALServer.DAL.IDataAccess Dal
+        {
+            get { return dal; }
+        }
+
+        private AppLogServer(Configuration config)
+        {
+            DistAppLogConfigurationSection config1 =
+            (DistAppLogConfigurationSection)System.Configuration.ConfigurationManager.GetSection("DistAppLogSection/Server");
+
+            this.conf = config;
+            ZmqUrl = string.Format("tcp://{0}:{1}", config.ServerIP.ToString(), config.Port.ToString());
         }
 
         private void StartSubscriber()
         {
             OnSignalReceived.Subscribe(x =>
             {
-                DistALServer.DAL.DataAccess dal = new DAL.DataAccess();
                 string identity = x.socket.Recv(Encoding.Unicode, 1000);
                 byte[] encMsg;
-                IMessage message;
+                MessageWrapper message;
                 if (x.socket.RcvMore)
                 {
                     encMsg = x.socket.Recv(1000);
-                    message = (IMessage)Utils.Deserialize(encMsg);
-                    switch (message.MessageType)
+                    if (encMsg.Length > 0)
                     {
-                        case MessageTypes.Hit:
-                            dal.InsertHitMessage((HitMessage)message);
-                            break;
-                        case MessageTypes.Info:
-                            dal.InsertInfoMessage((InfoMessage)message);
-                            break;
-                        case MessageTypes.Debug:
-                            dal.InsertDebugMessage((DebugMessage)message);
-                            break;
-                        case MessageTypes.Error:
-                            dal.InsertErrorMessage((ErrorMessage)message);
-                            break;
-                        case MessageTypes.Warning:
-                            dal.InsertWarningMessage((WarningMessage)message);
-                            break;
-                        case MessageTypes.Fatal:
-                            dal.InsertFatalMessage((FatalMessage)message);
-                            break;
+                        message = Utils.Deserialize<MessageWrapper>(encMsg);
+                        switch (message.Message.MessageType)
+                        {
+                            case MessageTypes.Hit:
+                                dal.InsertHitMessage((HitMessage)message.Message);
+                                break;
+                            case MessageTypes.Info:
+                                dal.InsertInfoMessage((InfoMessage)message.Message);
+                                break;
+                            case MessageTypes.Debug:
+                                dal.InsertDebugMessage((DebugMessage)message.Message);
+                                break;
+                            case MessageTypes.Error:
+                                dal.InsertErrorMessage((ErrorMessage)message.Message);
+                                break;
+                            case MessageTypes.Warning:
+                                dal.InsertWarningMessage((WarningMessage)message.Message);
+                                break;
+                            case MessageTypes.Fatal:
+                                dal.InsertFatalMessage((FatalErrorMessage)message.Message);
+                                break;
 
+                        }
                     }
                 }
                 Console.WriteLine("Message Received of " + identity + ":");
@@ -87,20 +156,12 @@ namespace DistALServer
                 pollerParameters.context.Poll(pollerParameters.pollitems, -1);
             }
         }
+
         private void MessageReceiver_PollInHandler(Socket socket, IOMultiPlex revents)
         {
             msgReceived.OnNext(new ZMQPollerParams { socket = socket, revents = revents });
         }
 
-        public IObservable<ZMQPollerParams> OnSignalReceived
-        {
-            get { return msgReceived.AsObservable(); }
-        }
 
-        public void Stop()
-        {
-            context.Dispose();
-            receiver.Dispose();            
-        }
     }
 }

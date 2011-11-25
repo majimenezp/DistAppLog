@@ -3,3 +3,5 @@ C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\MessagesInt
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\MessagesInterfaces\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\MessagesInterfaces\obj\Debug\MessagesInterfaces.dll
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\MessagesInterfaces\obj\Debug\MessagesInterfaces.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\MessagesInterfaces\bin\Debug\protobuf-net.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\MessagesInterfaces\bin\Debug\protobuf-net.pdb
