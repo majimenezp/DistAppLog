@@ -7,7 +7,7 @@ namespace DistALServer.DAL.Entities
 {
     public class Application
     {
-        public long Id { get; set; }
-        public string AppName { get; set; }
+        public virtual long Id { get; set; }
+        public virtual string AppName { get; set; }
     }
 }

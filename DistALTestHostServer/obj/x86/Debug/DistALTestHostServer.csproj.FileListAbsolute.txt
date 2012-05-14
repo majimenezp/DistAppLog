@@ -39,3 +39,11 @@ C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestH
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\Gate.Kayak.dll
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\Nancy.Hosting.Owin.dll
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\Kayak.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\FluentNHibernate.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\NHibernate.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\Iesi.Collections.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\FluentNHibernate.xml
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\NHibernate.xml
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\Iesi.Collections.xml
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\clrzmq.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostServer\bin\Debug\clrzmq.xml

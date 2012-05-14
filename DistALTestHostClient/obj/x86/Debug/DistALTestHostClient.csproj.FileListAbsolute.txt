@@ -12,3 +12,5 @@ C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestH
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\DistALTestHostClient.exe.config
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\protobuf-net.dll
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\protobuf-net.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\clrzmq.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALTestHostClient\bin\Debug\clrzmq.xml

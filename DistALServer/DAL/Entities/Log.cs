@@ -7,13 +7,21 @@ namespace DistALServer.DAL.Entities
 {
     public class Log
     {
-        public long Id { get; set; }
-        public DateTime Date { get; set; }
-        public long AppIdentity { get; set; }
-        public string Module { get; set; }
-        public string Level { get; set; }
-        public string Message { get; set; }
-        public string Exception { get; set; }
-
+        public virtual long Id { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual long AppIdentity { get; set; }
+        public virtual string App { get; set; }
+        public virtual string Module { get; set; }
+        public virtual string Level { get; set; }
+        public virtual string Message { get; set; }
+        public virtual string Exception { get; set; }
+        public Log()
+        {
+            this.Message = string.Empty;
+            this.Level = "INFO";
+            this.Module = string.Empty;
+            this.App = string.Empty;
+            this.Date = DateTime.Now;
+        }
     }
 }

@@ -9,3 +9,5 @@ C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClien
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\obj\Debug\DistALClient.pdb
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\protobuf-net.pdb
 C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\protobuf-net.dll
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\clrzmq.pdb
+C:\Users\majimenezp\Documents\Visual Studio 2010\Projects\DistAppLog\DistALClient\bin\Debug\clrzmq.xml

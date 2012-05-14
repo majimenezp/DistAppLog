@@ -11,7 +11,7 @@ namespace DistALServer
     {
         public override void Load()
         {
-            Bind<IDataAccess>().To<SQLiteDataAccess>().InSingletonScope();
+            Bind<IDataAccess>().To<DatabaseDataAccess>().InSingletonScope();
         }
     }
 }

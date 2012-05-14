@@ -10,30 +10,27 @@ namespace DistALClient
     public class AppLogClient:IDisposable
     {
         private string ZmqUrl;
-        private static AppLogClient instance;
-        private Context context;
-        private static Socket sender;
+        private static AppLogClient instance=new AppLogClient();
         private static string identity;
+
+        static AppLogClient()
+        {
+
+        }
         private AppLogClient()
         {
+            Console.WriteLine("Instance created");
             DistAppLogConfigurationSection config =
                        (DistAppLogConfigurationSection)System.Configuration.ConfigurationManager.GetSection("DistAppLogSection/Client");
             ZmqUrl = string.Format("tcp://{0}:{1}", config.Communication.Server.ToString(), config.Communication.TcpPort.ToString());
             identity = config.Communication.Identity;
-            context = new Context(4);
-            sender = context.Socket(SocketType.DEALER);
-            sender.StringToIdentity(identity, Encoding.Unicode);
-            sender.Connect(ZmqUrl);
+            SocketFactory.Instance.CreateSockets(ZmqUrl,identity);
             
         }
         public static AppLogClient Instance
         {
             get
             {
-                if (instance == null)
-                {
-                    instance = new AppLogClient();
-                }
                 return instance;
             }
         }
@@ -172,11 +169,20 @@ namespace DistALClient
 
         static void ThreadSend<T>(object sendinfo) where T :IMessage
         {
-            T message = (T)sendinfo; 
+            T message=(T)sendinfo;
             MessageWrapper wrap = new MessageWrapper();
             wrap.Message = message;
             byte[] encMessage = Utils.Serialize(wrap);
-            sender.Send(encMessage);
+            
+            try
+            {
+                Socket sender = SocketFactory.Instance.Acquire();
+                sender.Send(encMessage);
+                SocketFactory.Instance.Release(sender);
+            }
+            catch (System.Exception ex1)
+            {
+            }
         }        
         public void Dispose()
         {

@@ -23,6 +23,7 @@ namespace DistALServer.DAL
             var tmp = new Log();
             tmp.Date = message.Date;
             tmp.AppIdentity = appid;
+            tmp.App = message.OriginIdentity;
             tmp.Module = message.ModuleName;
             tmp.Message = message.Message;
             tmp.Exception = message.Stacktrace;
@@ -44,6 +45,7 @@ namespace DistALServer.DAL
             var tmp = new Log();
             tmp.Date = message.Date;
             tmp.AppIdentity = appid;
+            tmp.App = message.OriginIdentity;
             tmp.Module = message.ModuleName;
             tmp.Message = message.Message;
             tmp.Exception = message.Exception.ToString();
@@ -65,6 +67,7 @@ namespace DistALServer.DAL
             var tmp = new Log();
             tmp.Date = message.Date;
             tmp.AppIdentity = appid;
+            tmp.App = message.OriginIdentity;
             tmp.Module = message.ModuleName;
             tmp.Message = message.Message ?? string.Empty;
             tmp.Exception = message.Exception??string.Empty;
@@ -86,6 +89,7 @@ namespace DistALServer.DAL
             var tmp = new Log();
             tmp.Date = message.DateofHit;
             tmp.AppIdentity = appid;
+            tmp.App = message.OriginIdentity;
             tmp.Module = message.ModuleName;
             tmp.Message = "Hit by user:" + message.User + "|Message:" + message.Message;
             tmp.Exception = string.Empty;
@@ -107,6 +111,7 @@ namespace DistALServer.DAL
             var tmp = new Log();
             tmp.Date = DateTime.Now;
             tmp.AppIdentity = appid;
+            tmp.App = message.OriginIdentity;
             tmp.Module = message.ModuleName;
             tmp.Message = message.Message;
             tmp.Exception = string.Empty;
@@ -128,6 +133,7 @@ namespace DistALServer.DAL
             var tmp = new Log();
             tmp.Date = message.Date;
             tmp.AppIdentity = appid;
+            tmp.App = message.OriginIdentity;
             tmp.Module = message.ModuleName ?? string.Empty;
             tmp.Message = message.Message??string.Empty;
             tmp.Exception = message.Exception ?? string.Empty;

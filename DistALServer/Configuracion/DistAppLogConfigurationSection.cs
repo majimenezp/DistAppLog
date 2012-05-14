@@ -25,16 +25,16 @@ namespace DistALServer
 
     public class DataBaseElement : ConfigurationElement
     {
-        [ConfigurationProperty("dbprovider", DefaultValue = "SQLLiteDataAccess", IsRequired = true)]
-        public string DatabaseProvider
+        [ConfigurationProperty("dbprovider", DefaultValue = "Sqlite", IsRequired = true)]
+        public PersistenceProviders DatabaseProvider
         {
             get
             {
-                return (string)this["dbprovider"];
+                return (PersistenceProviders)this["dbprovider"];
             }
             set
             {
-                this["dbprovider"] = value;
+                this["dbprovider"] =value;
             }
         }
 
